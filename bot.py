@@ -93,6 +93,7 @@ async def start(bot: Client, cmd: Message):
                 file_id = int(usr_cmd.split("_")[-1])
             GetMessage = await bot.get_messages(chat_id=Config.DB_CHANNEL, message_ids=file_id)
             message_ids = []
+            print(message_ids)
             if GetMessage.text:
                 message_ids.append(GetMessage.id) #= GetMessage.text.split(" ")
                 _response_msg = await cmd.reply_text(
