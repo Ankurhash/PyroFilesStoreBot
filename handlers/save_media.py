@@ -44,7 +44,8 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             if sent_message is None:
                 continue
             message_ids_str += f"{str(sent_message.id)} "
-            message_cap += await f"<b>{i}</b>: {rmw(sent_message.caption)}\n\n"
+            cap01 = await rmw(sent_message.caption)
+            message_cap += f"<b>{i}</b>: {cap01}\n\n"
             i += 1
             await asyncio.sleep(2)
         SaveMessage = await bot.send_message(
