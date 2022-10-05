@@ -3,7 +3,7 @@
 import asyncio
 from configs import Config
 from handlers import linkshort
-from handlers import remove_word.rmw
+from handlers.remove_word import rmw
 from pyrogram import Client
 from pyrogram.types import (
     Message,
