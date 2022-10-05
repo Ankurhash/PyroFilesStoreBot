@@ -1,4 +1,4 @@
-from configs import Config.REMOVE_WORD
+from configs.Config import REMOVE_WORD
 async def rmw(cap):
     for i in REMOVE_WORD:
         try:
