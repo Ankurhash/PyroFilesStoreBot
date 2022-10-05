@@ -1,7 +1,6 @@
 # (c) @AbirHasan2005
 
 import os
-from configs import Config
 import asyncio
 import traceback
 from binascii import (
@@ -75,8 +74,8 @@ async def start(bot: Client, cmd: Message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Support Group", url="https://t.me/"),
-                        InlineKeyboardButton("Bots Channel", url="https://t.me/")
+                        InlineKeyboardButton("Support Group", url="https://t.me/JoinOT"),
+                        InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")
                     ],
                     [
                         InlineKeyboardButton("About Bot", callback_data="aboutbot"),
@@ -93,9 +92,8 @@ async def start(bot: Client, cmd: Message):
                 file_id = int(usr_cmd.split("_")[-1])
             GetMessage = await bot.get_messages(chat_id=Config.DB_CHANNEL, message_ids=file_id)
             message_ids = []
-            print(message_ids)
             if GetMessage.text:
-                message_ids.append(GetMessage.id) #= GetMessage.text.split(" ")
+                message_ids = GetMessage.text.split(" ")
                 _response_msg = await cmd.reply_text(
                     text=f"**Total Files:** `{len(message_ids)}`",
                     quote=True,
@@ -109,7 +107,7 @@ async def start(bot: Client, cmd: Message):
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
 
 
-@Bot.on_message((filters.user(Config.BOT_OWNER) & filters.incoming) & ~filters.chat(Config.DB_CHANNEL) & ~filters.command(['start','broadcast','clear_batch','ban_user','unban_user','banned_users','status']))
+@Bot.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
 
     if message.chat.type == enums.ChatType.PRIVATE:
@@ -122,7 +120,7 @@ async def main(bot: Client, message: Message):
                 return
 
         if message.from_user.id in Config.BANNED_USERS:
-            await message.reply_text("Sorry, You are banned!\n\nContact [Support Group](https://t.me/)",
+            await message.reply_text("Sorry, You are banned!\n\nContact [Support Group](https://t.me/JoinOT)",
                                      disable_web_page_preview=True)
             return
 
@@ -150,11 +148,7 @@ async def main(bot: Client, message: Message):
         try:
             forwarded_msg = await message.forward(Config.DB_CHANNEL)
             file_er_id = str(forwarded_msg.id)
-            if Config.SHORTNER_API_LINK and Config.SHORTNER_API:
-                share_link = await linkshort.Short(f"https://t.me/{Config.BOT_USERNAME}?start=storebot_{str_to_b64(file_er_id)}")
-            else:
-                share_link = f"https://t.me/{Config.BOT_USERNAME}?start=storebot_{str_to_b64(file_er_id)}"
-            #share_link = f"https://t.me/{Config.BOT_USERNAME}?start=storebot_{str_to_b64(file_er_id)}"
+            share_link = f"https://t.me/{Config.BOT_USERNAME}?start=AbirHasan2005_{str_to_b64(file_er_id)}"
             CH_edit = await bot.edit_message_reply_markup(message.chat.id, message.id,
                                                           reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
                                                               "Get Sharable Link", url=share_link)]]))
@@ -321,7 +315,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 [
                     [
                         InlineKeyboardButton("Source Codes of Bot",
-                                             url="https://github.com/")
+                                             url="https://github.com/AbirHasan2005/PyroFilesStoreBot")
                     ],
                     [
                         InlineKeyboardButton("Go Home", callback_data="gotohome"),
@@ -339,7 +333,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 [
                     [
                         InlineKeyboardButton("Source Codes of Bot",
-                                             url="https://github.com/")
+                                             url="https://github.com/AbirHasan2005/PyroFilesStoreBot")
                     ],
                     [
                         InlineKeyboardButton("About Bot", callback_data="aboutbot"),
@@ -356,8 +350,8 @@ async def button(bot: Client, cmd: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Support Group", url="https://t.me/"),
-                        InlineKeyboardButton("Bots Channel", url="https://t.me/")
+                        InlineKeyboardButton("Support Group", url="https://t.me/JoinOT"),
+                        InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")
                     ],
                     [
                         InlineKeyboardButton("About Bot", callback_data="aboutbot"),
@@ -377,7 +371,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 user = await bot.get_chat_member(channel_chat_id, cmd.message.chat.id)
                 if user.status == "kicked":
                     await cmd.message.edit(
-                        text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/).",
+                        text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/JoinOT).",
                         disable_web_page_preview=True
                     )
                     return
@@ -400,7 +394,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 return
             except Exception:
                 await cmd.message.edit(
-                    text="Something went Wrong. Contact my [Support Group](https://t.me/).",
+                    text="Something went Wrong. Contact my [Support Group](https://t.me/JoinOT).",
                     disable_web_page_preview=True
                 )
                 return
@@ -410,8 +404,8 @@ async def button(bot: Client, cmd: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Support Group", url="https://t.me/"),
-                        InlineKeyboardButton("Bots Channel", url="https://t.me/")
+                        InlineKeyboardButton("Support Group", url="https://t.me/JoinOT"),
+                        InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")
                     ],
                     [
                         InlineKeyboardButton("About Bot", callback_data="aboutbot"),
