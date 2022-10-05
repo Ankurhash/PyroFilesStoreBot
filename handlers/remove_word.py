@@ -6,4 +6,4 @@ async def rmw(cap):
             cap = cap1
         except:
             pass
-    return cap
+    return cap1
