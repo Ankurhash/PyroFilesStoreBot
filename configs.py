@@ -6,7 +6,7 @@ import os
 class Config(object):
 	API_ID = int(os.environ.get("API_ID","18860540"))
 	API_HASH = os.environ.get("API_HASH","22dd2ad1706199438ab3474e85c9afab")
-	BOT_TOKEN = os.environ.get("BOT_TOKEN","5355558998:AAGm6KcRi6LYP0O9HooQ74LdzXySswCrkl0")
+	BOT_TOKEN = os.environ.get("BOT_TOKEN","5355558998:AAFehbjIvbfZTubH8b_0XlBKlu17M0Se4PY")
 	BOT_USERNAME = os.environ.get("BOT_USERNAME","mirroeleech10bot")
 	DB_CHANNEL = int(os.environ.get("DB_CHANNEL","-1001777759879"))
 	BOT_OWNER = int(os.environ.get("BOT_OWNER","5123176772"))
