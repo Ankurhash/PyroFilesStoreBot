@@ -98,9 +98,10 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
     try:
         forwarded_msg = await message.copy(Config.DB_CHANNEL)
         cap01 = forwarded_msg.caption
-        cap = await rmw(cap01)
-        await bot.edit_message_caption(Config.DB_CHANNEL,forwarded_msg.id,f"{cap}")
-        file_er_id = str(forwarded_msg.id)
+        if cap01:
+            cap = await rmw(cap01)
+            await bot.edit_message_caption(Config.DB_CHANNEL,forwarded_msg.id,f"{cap}")
+        file_er_id = str(forwarded_msg.id)           
         await forwarded_msg.reply_text(
             f"#PRIVATE_FILE:\n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Got File Link!",
             disable_web_page_preview=True)
