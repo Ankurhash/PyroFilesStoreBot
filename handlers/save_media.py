@@ -44,9 +44,13 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             if sent_message is None:
                 continue
             message_ids_str += f"{str(sent_message.id)} "
-            cap01 = await rmw(sent_message.caption)
-            #await bot.edit_message_caption(Config.DB_CHANNEL,sent_message.id,f"{cap01}")
-            message_cap += f"<b>{i}</b>: {cap01}\n\n"
+            cap01 = sent_message.caption
+            if cap01:
+                cap = await rmw(cap01)
+                await bot.edit_message_caption(Config.DB_CHANNEL,sent_message.id,f"{cap}")
+            else:
+                cap = file don't have caption 🤥"
+            message_cap += f"<b>{i}</b>: {cap}\n\n"
             i += 1
             await asyncio.sleep(2)
         SaveMessage = await bot.send_message(
@@ -102,7 +106,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
             cap = await rmw(cap01)
             await bot.edit_message_caption(Config.DB_CHANNEL,forwarded_msg.id,f"{cap}")
         else:
-            cap = cap01
+            cap = "file don't have any caption 😟"
         file_er_id = str(forwarded_msg.id)           
         await forwarded_msg.reply_text(
             f"#PRIVATE_FILE:\n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Got File Link!",
