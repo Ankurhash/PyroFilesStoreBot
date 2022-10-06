@@ -1,3 +1,4 @@
+from configs import Config
 async def rmw(cap):
     for i in Config.REMOVE_WORD:
         if i in cap:
