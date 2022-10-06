@@ -47,7 +47,8 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
             cap01 = sent_message.caption
             if cap01:
                 cap = await rmw(cap01)
-                #await bot.edit_message_caption(Config.DB_CHANNEL,sent_message.id,f"{cap}")
+                if cap != cap01:
+                    await bot.edit_message_caption(Config.DB_CHANNEL,sent_message.id,f"{cap}")
             else:
                 cap = "file don't have caption 🤥"
             message_cap += f"<b>{i}</b>: {cap}\n\n"
