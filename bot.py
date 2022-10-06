@@ -89,10 +89,10 @@ async def start(bot: Client, cmd: Message):
         try:
             try:
                 file_id = int(b64_to_str(usr_cmd).split("_")[-1])
+                print(file_id)
             except (Error, UnicodeDecodeError):
                 file_id = int(usr_cmd.split("_")[-1])
             GetMessage = await bot.get_messages(chat_id=Config.DB_CHANNEL, message_ids=file_id)
-            print(GetMessage)
             message_ids = []
             if GetMessage.reply_markup:
                 message_ids = GetMessage.text.split(" ")
