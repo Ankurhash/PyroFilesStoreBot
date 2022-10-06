@@ -49,7 +49,7 @@ async def save_batch_media_in_channel(bot: Client, editable: Message, message_id
                 cap = await rmw(cap01)
                 await bot.edit_message_caption(Config.DB_CHANNEL,sent_message.id,f"{cap}")
             else:
-                cap = file don't have caption 🤥"
+                cap = "file don't have caption 🤥"
             message_cap += f"<b>{i}</b>: {cap}\n\n"
             i += 1
             await asyncio.sleep(2)
