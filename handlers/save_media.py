@@ -104,7 +104,8 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         cap01 = forwarded_msg.caption
         if cap01:
             cap = await rmw(cap01)
-            await bot.edit_message_caption(Config.DB_CHANNEL,forwarded_msg.id,f"{cap}")
+            if cap != cap01:
+                await bot.edit_message_caption(Config.DB_CHANNEL,forwarded_msg.id,f"{cap}")
         else:
             cap = "file don't have any caption 😟"
         file_er_id = str(forwarded_msg.id)           
